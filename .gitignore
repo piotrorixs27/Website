@@ -223,3 +223,7 @@ $RECYCLE.BIN/
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+terraform.tfstate.backup
+package-lock.json
+types_metadata.json
+function_lambda_terraform.zip
