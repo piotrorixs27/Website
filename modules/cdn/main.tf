@@ -8,18 +8,18 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     origin_id   = local.s3_origin_id
 
     custom_origin_config {
-      http_port                = 80
-      https_port               = 443
-      origin_keepalive_timeout = 5
-      origin_protocol_policy   = "http-only"
-      origin_read_timeout      = 30
-      origin_ssl_protocols = ["TLSv1.2",]
+      http_port                = var.http_port
+      https_port               = var.https_port
+      origin_keepalive_timeout = var.origin_keepalive_timeout
+      origin_protocol_policy   = var.origin_protocol_policy
+      origin_read_timeout      = var.origin_read_timeout
+      origin_ssl_protocols = var.origin_ssl_protocols
     }
   }
 
-  enabled         = true
-  is_ipv6_enabled = false
-  comment         = "My first CDN"
+  enabled         =var.enabled_cdn
+  is_ipv6_enabled = var.is_ipv6_enabled_cdn
+  comment         = var.comment_cdn
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]

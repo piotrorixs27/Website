@@ -227,3 +227,7 @@ terraform.tfstate.backup
 package-lock.json
 types_metadata.json
 function_lambda_terraform.zip
+.terraform.lock.hcl
+function_lambda_terraform.py
+package.json
+terraform.tfstate
