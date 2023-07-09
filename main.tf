@@ -21,8 +21,8 @@ module "cdn" {
   origin_keepalive_timeout = 5
   origin_protocol_policy   = "http-only"
   origin_read_timeout      = 30
-  origin_ssl_protocols = ["TLSv1.2",]
-  enabled         = true
-  is_ipv6_enabled= false
-  comment         = "My first CDN"
+  origin_ssl_protocols = "TLSv1.2"
+  enabled_cdn=true
+  is_ipv6_enabled_cdn= false
+  comment_cdn         = "My first CDN"
 }
