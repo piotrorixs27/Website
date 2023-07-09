@@ -12,6 +12,7 @@ module "s3_bucket"{
   block_public_policy=false
   ignore_public_acls=true
    restrict_public_buckets = false
+  domain_name= module.s3_bucket.bucket
 }
 
 module "cdn" {
