@@ -37,7 +37,7 @@ resource "aws_s3_bucket_policy" "my_origin_access_identity" {
   policy = data.aws_iam_policy_document.my_origin_access_identity.json
 }
 locals {
-  types_metadata =jsondecode(file("${path.module}/types_metadata.json"))
+  types_metadata =jsondecode(file("${path.root}/types_metadata.json"))
 }
 resource "aws_s3_object" "pioterwebsitebucket123" {
   bucket   = aws_s3_bucket.pioterwebsitebucket123.id

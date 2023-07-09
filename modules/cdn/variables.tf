@@ -25,3 +25,6 @@ variable "is_ipv6_enabled_cdn" {
 variable "comment_cdn" {
   type=string
 }
+variable "domain_name" {
+  type=string
+}

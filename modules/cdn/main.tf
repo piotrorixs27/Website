@@ -4,7 +4,7 @@ locals {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name = aws_s3_bucket.pioterwebsitebucket123.website_endpoint
+    domain_name = var.domain_name
     origin_id   = local.s3_origin_id
 
     custom_origin_config {

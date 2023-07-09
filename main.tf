@@ -25,4 +25,5 @@ module "cdn" {
   enabled_cdn=true
   is_ipv6_enabled_cdn= false
   comment_cdn         = "My first CDN"
+  domain_name= module.s3_bucket.bucket
 }
