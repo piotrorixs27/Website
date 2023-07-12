@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"s3_bucket","Source":"./modules/bucket","Dir":"modules/bucket"},{"Key":"","Source":"","Dir":"."},{"Key":"cdn","Source":"./modules/cdn","Dir":"modules/cdn"}]}
+{"Modules":[{"Key":"lambda","Source":"./modules/lambda","Dir":"modules/lambda"},{"Key":"restapi","Source":"./modules/restapi","Dir":"modules/restapi"},{"Key":"s3_bucket","Source":"./modules/bucket","Dir":"modules/bucket"},{"Key":"","Source":"","Dir":"."},{"Key":"cdn","Source":"./modules/cdn","Dir":"modules/cdn"},{"Key":"dynamodb","Source":"./modules/dynamodb","Dir":"modules/dynamodb"}]}

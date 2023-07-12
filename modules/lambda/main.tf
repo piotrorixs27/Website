@@ -1,21 +1,21 @@
 data "archive_file" "zip" {
   type        = "zip"
-  source_file = "function_lambda_terraform.py"
-  output_path = "function_lambda_terraform.zip"
+  source_file = "${var.lambda_name}.py"
+  output_path = "${var.lambda_name}.zip"
 }
 resource "aws_lambda_function" "lambda" {
-  function_name = "function_lambda_terraform"
-  filename         = "${data.archive_file.zip.output_path}"
-  source_code_hash = "${data.archive_file.zip.output_base64sha256}"
-  role          = aws_iam_role.iam_for_lambda.arn
-  runtime          = "python3.9"
-  handler          = "function_lambda_terraform.lambda_handler"
+  function_name    = var.lambda_name
+  filename         = data.archive_file.zip.output_path
+  source_code_hash = data.archive_file.zip.output_base64sha256
+  role             = aws_iam_role.iam_for_lambda.arn
+  runtime          = var.runtime
+  handler          = "${var.lambda_name}.lambda_handler"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
- name = "iam_for_lambda"
+  name = var.aws_iam_role_name
 
- assume_role_policy = jsonencode({
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -31,14 +31,14 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 data "aws_iam_policy_document" "dynamodb-lambda-policy" {
   statement {
-    actions   = ["dynamodb:getitem"]
+    actions = [var.dynamo_lambda_actions]
     resources = ["${aws_dynamodb_table.DynamoDb_Base.arn}",
-          "${aws_dynamodb_table.DynamoDb_Base.arn}/*"]
+    "${aws_dynamodb_table.DynamoDb_Base.arn}/*"]
   }
 }
 resource "aws_iam_policy" "dynamodb_policy" {
-    name = "dynamodb_lambda_policy"
-  policy = "${data.aws_iam_policy_document.dynamodb-lambda-policy.json}"
+  name   = var.aws_iam_dynamo_policy
+  policy = data.aws_iam_policy_document.dynamodb-lambda-policy.json
 }
 resource "aws_iam_role_policy_attachment" "test-attach" {
   role       = aws_iam_role.iam_for_lambda.name

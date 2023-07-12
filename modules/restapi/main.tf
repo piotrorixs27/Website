@@ -1,24 +1,24 @@
 resource "aws_api_gateway_rest_api" "example" {
-  name = "api"
+  name = var.name_api
 }
 resource "aws_api_gateway_method" "example" {
-  authorization = "NONE"
-  http_method   = "GET"
+  authorization = var.authorization
+  http_method   = var.http_method
   resource_id   = aws_api_gateway_rest_api.example.root_resource_id
   rest_api_id   = aws_api_gateway_rest_api.example.id
 }
 resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = aws_api_gateway_rest_api.example.id
-  resource_id   = aws_api_gateway_rest_api.example.root_resource_id
+  resource_id             = aws_api_gateway_rest_api.example.root_resource_id
   http_method             = aws_api_gateway_method.example.http_method
-  integration_http_method = "POST"
-  type                    = "AWS_PROXY"
+  integration_http_method = var.integration_http_method
+  type                    = var.type_integration
   uri                     = aws_lambda_function.lambda.invoke_arn
 }
 resource "aws_api_gateway_stage" "example" {
   deployment_id = aws_api_gateway_deployment.example.id
   rest_api_id   = aws_api_gateway_rest_api.example.id
-  stage_name    = "example"
+  stage_name    = var.stage_name
 }
 resource "aws_api_gateway_deployment" "example" {
   rest_api_id = aws_api_gateway_rest_api.example.id
@@ -35,7 +35,7 @@ resource "aws_api_gateway_deployment" "example" {
   }
 }
 resource "aws_api_gateway_rest_api" "api_gateway" {
-  name = "example-rest-api"
+  name = var.name_api_gateway
 }
 
 data "aws_iam_policy_document" "api_policy" {
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "api_policy" {
       identifiers = ["*"]
     }
 
-    actions   = ["function_lambda_terraform:InvokeFunction"]
+    actions   = ["${var.lambda_name}:InvokeFunction"]
     resources = [aws_api_gateway_rest_api.api_gateway.execution_arn]
 
   }

@@ -13,42 +13,42 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       origin_keepalive_timeout = var.origin_keepalive_timeout
       origin_protocol_policy   = var.origin_protocol_policy
       origin_read_timeout      = var.origin_read_timeout
-      origin_ssl_protocols = var.origin_ssl_protocols
+      origin_ssl_protocols     = var.origin_ssl_protocols
     }
   }
 
-  enabled         =var.enabled_cdn
+  enabled         = var.enabled_cdn
   is_ipv6_enabled = var.is_ipv6_enabled_cdn
   comment         = var.comment_cdn
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
+    allowed_methods  = ["GET", "${var.allowed_methods}"]
+    cached_methods   = ["GET", "${var.cached_methods}"]
     target_origin_id = local.s3_origin_id
 
     forwarded_values {
-      query_string = false
+      query_string = var.query_string
 
       cookies {
-        forward = "none"
+        forward = var.forward_cookies_cdn
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
+    viewer_protocol_policy = var.viewer_protocol_policy
+    min_ttl                = var.min_ttl
+    default_ttl            = var.default_ttl
+    max_ttl                = var.max_ttl
   }
 
-  price_class = "PriceClass_All"
+  price_class = var.price_class
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    cloudfront_default_certificate = var.cloudfront_default_certificate
   }
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = var.restriction_type
     }
   }
 }

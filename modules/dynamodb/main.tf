@@ -1,12 +1,12 @@
 resource "aws_dynamodb_table" "DynamoDb_Base" {
-  name         = "DynamoDb_Base"
-  billing_mode = "PROVISIONED"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key     = "waluta"
+  name           = var.dynamodb_name
+  billing_mode   = var.billing_mode
+  read_capacity  = var.read_capacity
+  write_capacity = var.write_capacity
+  hash_key       = var.hash_key
   attribute {
-    name = "waluta"
-    type = "S"
+    name = var.name_attribute_dynamodb
+    type = var.type_attribute_dynamodb
   }
 }
 resource "aws_dynamodb_table_item" "DynamoDb_Base" {
