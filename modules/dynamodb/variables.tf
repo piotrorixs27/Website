@@ -1,11 +1,15 @@
-variable "dynamodb" {
+variable "dynamodb_name" {
   type=string
 }
 variable "billing_mode" {
-  type = number
+  type = string
 }
 variable "write_capacity" {
-    type = number
+  type = number
+}
+variable "read_capacity" {
+ type = number
+
 }
 variable "hash_key" {
   type = string

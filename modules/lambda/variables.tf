@@ -13,3 +13,6 @@ variable "runtime" {
 variable "aws_iam_dynamo_policy" {
   type=string
 }
+variable "policy_dynamodb_lambda" {
+  type = string
+}

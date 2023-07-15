@@ -1,6 +1,9 @@
 variable "name_api" {
   type=string
 }
+variable "authorization" {
+  type=string
+}
 variable "http_method" {
   type=string
 }
@@ -15,5 +18,11 @@ variable "stage_name" {
 }
 
 variable "name_api_gateway" {
+  type=string
+}
+variable "lambda_name" {
+  type=string
+}
+variable "integration_uri" {
   type=string
 }

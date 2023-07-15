@@ -13,7 +13,7 @@ resource "aws_api_gateway_integration" "integration" {
   http_method             = aws_api_gateway_method.example.http_method
   integration_http_method = var.integration_http_method
   type                    = var.type_integration
-  uri                     = aws_lambda_function.lambda.invoke_arn
+  uri                     = var.integration_uri
 }
 resource "aws_api_gateway_stage" "example" {
   deployment_id = aws_api_gateway_deployment.example.id

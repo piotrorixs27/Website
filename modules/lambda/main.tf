@@ -32,8 +32,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 data "aws_iam_policy_document" "dynamodb-lambda-policy" {
   statement {
     actions = [var.dynamo_lambda_actions]
-    resources = ["${aws_dynamodb_table.DynamoDb_Base.arn}",
-    "${aws_dynamodb_table.DynamoDb_Base.arn}/*"]
+    resources = [var.policy_dynamodb_lambda,var.policy_dynamodb_lambda]
   }
 }
 resource "aws_iam_policy" "dynamodb_policy" {

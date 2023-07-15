@@ -13,9 +13,7 @@ variable "origin_protocol_policy" {
 variable "origin_read_timeout" {
   type = number
 }
-variable "origin_ssl_protocols" {
-  type = string
-}
+
 variable "enabled_cdn" {
   type = bool
 }
@@ -60,4 +58,7 @@ variable "cloudfront_default_certificate" {
 }
 variable "restriction_type" {
   type = string
+}
+variable "origin_ssl_protocols" {
+  
 }
