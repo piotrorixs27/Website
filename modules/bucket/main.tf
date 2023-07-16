@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "pioterwebsitebucket123" {
   bucket = var.name_bucket
-
+  
   website {
     index_document = var.index_document
     error_document = var.error_document

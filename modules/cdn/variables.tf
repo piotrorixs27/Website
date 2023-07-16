@@ -26,12 +26,7 @@ variable "comment_cdn" {
 variable "domain_name" {
   type = string
 }
-variable "allowed_methods" {
-  type = string
-}
-variable "cached_methods" {
-  type = string
-}
+
 variable "query_string" {
   type = bool
 }

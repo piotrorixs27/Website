@@ -31,12 +31,10 @@ module "cdn" {
   origin_keepalive_timeout       = 5
   origin_protocol_policy         = "http-only"
   origin_read_timeout            = 30
-  origin_ssl_protocols     = ["TLSv1.2"]
+  origin_ssl_protocols     = ["TLSv1.2",]
   enabled_cdn                    = true
   is_ipv6_enabled_cdn            = false
   comment_cdn                    = "My first CDN"
-  allowed_methods                = "HEAD"
-  cached_methods                 = "HEAD"
   query_string                   = false
   forward_cookies_cdn            = "none"
   min_ttl                        = 0
@@ -46,7 +44,7 @@ module "cdn" {
   cloudfront_default_certificate = true
   restriction_type               = "none"
   domain_name                    = module.s3_bucket.domain_name
-  viewer_protocol_policy=  "https-only"
+  viewer_protocol_policy=  "redirect-to-https"
 }
 module "dynamodb" {
 

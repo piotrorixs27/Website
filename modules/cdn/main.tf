@@ -22,8 +22,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment         = var.comment_cdn
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "${var.allowed_methods}"]
-    cached_methods   = ["GET", "${var.cached_methods}"]
+    allowed_methods  = ["GET","HEAD"]
+    cached_methods   = ["GET","HEAD"]
     target_origin_id = local.s3_origin_id
 
     forwarded_values {
