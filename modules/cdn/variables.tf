@@ -1,8 +1,10 @@
 variable "http_port" {
   type = number
+  description = "Number of http port"
 }
 variable "https_port" {
   type = number
+  description = "Number of https port"
 }
 variable "origin_keepalive_timeout" {
   type = number
@@ -29,6 +31,7 @@ variable "domain_name" {
 
 variable "query_string" {
   type = bool
+  description = "Indicates whether you want CloudFront to forward query strings to the origin that is associated with this cache behavior."
 }
 variable "forward_cookies_cdn" {
   type = string
@@ -55,5 +58,5 @@ variable "restriction_type" {
   type = string
 }
 variable "origin_ssl_protocols" {
-  
+  description = "SSL/TLS protocols that you want CloudFront to use when communicating with your origin over HTTPS. A list of one or more of SSLv3, TLSv1, TLSv1.1, and TLSv1.2."
 }
