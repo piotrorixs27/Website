@@ -1,5 +1,6 @@
 variable "name_api" {
   type=string
+  description = "Nmae of this API"
 }
 variable "authorization" {
   type=string

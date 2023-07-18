@@ -50,6 +50,10 @@ variable "max_ttl" {
 }
 variable "price_class" {
   type = string
+  validation{
+    condition = var.price_class=="PriceClass_All" ||  var.price_class=="PriceClass_200" ||   var.price_class=="PriceClass_100"
+    error_message = "This is wrong mode."
+  }
 }
 variable "cloudfront_default_certificate" {
   type = bool
