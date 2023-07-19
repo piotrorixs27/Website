@@ -35,18 +35,21 @@ variable "query_string" {
 }
 variable "forward_cookies_cdn" {
   type = string
+  description = "The forwarded values cookies that specifies how CloudFront handles cookies (maximum one)."
 }
 variable "viewer_protocol_policy" {
   type = string
 }
 variable "min_ttl" {
   type = number
+  description = "Minimum amount of time that you want objects to stay in CloudFront caches before CloudFront queries your origin to see whether the object has been updated. Defaults to 0 seconds."
 }
 variable "default_ttl" {
   type = number
 }
 variable "max_ttl" {
   type = number
+  description = "Maximum amount of time (in seconds) that an object is in a CloudFront cache before CloudFront forwards another request to your origin to determine whether the object has been updated. Only effective in the presence of Cache-Control max-age, Cache-Control s-maxage, and Expires headers."
 }
 variable "price_class" {
   type = string
